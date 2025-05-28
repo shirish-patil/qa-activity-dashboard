@@ -1,0 +1,16 @@
+const ROLES = {
+  QA_MANAGER: 'QA_MANAGER',
+  QA_LEAD: 'QA_LEAD',
+  QA: 'QA'
+};
+
+const ROLE_HIERARCHY = {
+  [ROLES.QA_MANAGER]: [ROLES.QA_MANAGER, ROLES.QA_LEAD, ROLES.QA],
+  [ROLES.QA_LEAD]: [ROLES.QA_LEAD, ROLES.QA],
+  [ROLES.QA]: [ROLES.QA]
+};
+
+module.exports = {
+  ROLES,
+  ROLE_HIERARCHY
+};

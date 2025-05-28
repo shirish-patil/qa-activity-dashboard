@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         Int          @id @default(autoincrement())
+  name       String
+  email      String       @unique
+  password   String
+  role       UserRole     @default(QA)
+  activities QAActivity[]
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+}
+
+model QAActivity {
+  id             Int      @id @default(autoincrement())
+  date           DateTime @default(now())
+  activityType   String   // 'DAILY', 'WEEKLY', 'MONTHLY'
+  jiraTickets    String?
+  manualTesting  String?
+  apiTesting     String?
+  cypressTesting String?
+  additionalNotes String?
+  reviewed       Boolean  @default(false)
+  userId         Int
+  user           User     @relation(fields: [userId], references: [id])
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([userId])
+  @@index([date])
+}
+
+enum UserRole {
+  QA_MANAGER
+  QA_LEAD
+  QA
+}
+
+enum ActivityType {
+  DAILY
+  WEEKLY
+  MONTHLY
+}
