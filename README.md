@@ -18,4 +18,4 @@ A modern dashboard for tracking and analyzing QA activities.
 ## Development
 - Frontend: React, TailwindCSS, Recharts
 - Backend: Node.js, Express, Prisma
-- Database: PostgreSQL 
+- Database: PostgreSQL  
