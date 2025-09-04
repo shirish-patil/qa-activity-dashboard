@@ -8,6 +8,8 @@ import Dashboard from './components/Dashboard';
 import SubmitActivity from './components/SubmitActivity';
 import UserManagement from './components/UserManagement';
 import AISummary from './components/AISummary';
+import ChangePassword from './components/ChangePassword';
+import Profile from './components/Profile';
 
 function App() {
   return (
@@ -46,6 +48,22 @@ function App() {
               element={
                 <ProtectedRoute>
                   <AISummary />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/change-password"
+              element={
+                <ProtectedRoute>
+                  <ChangePassword />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute>
+                  <Profile />
                 </ProtectedRoute>
               }
             />

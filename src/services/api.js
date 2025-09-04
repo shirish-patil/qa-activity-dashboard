@@ -22,7 +22,9 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response?.status === 401) {
+    // Don't auto-logout for password change errors
+    if (error.response?.status === 401 && 
+        !error.config?.url?.includes('/api/auth/change-password')) {
       localStorage.removeItem('token');
       window.location.href = '/login';
     }
@@ -53,5 +55,20 @@ export const generateAISummary = async (startDate, endDate, query) => {
     throw error;
   }
 };
+
+export const changePassword = async (currentPassword, newPassword) => {
+  try {
+    const response = await api.post('/api/auth/change-password', {
+      currentPassword,
+      newPassword
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error changing password:', error);
+    throw error;
+  }
+};
+
+
 
 export default api;

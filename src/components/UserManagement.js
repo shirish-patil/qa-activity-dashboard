@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import api from '../services/api';
 
+
 const UserManagement = () => {
   const { currentUser } = useAuth();
   const [users, setUsers] = useState([]);
@@ -13,6 +14,7 @@ const UserManagement = () => {
     password: '',
     role: 'QA'
   });
+
 
   useEffect(() => {
     loadUsers();
@@ -63,6 +65,8 @@ const UserManagement = () => {
         return 'bg-gray-100 text-gray-800';
     }
   };
+
+
 
   if (!currentUser?.role === 'QA_MANAGER') {
     return (
@@ -221,6 +225,8 @@ const UserManagement = () => {
             )}
           </div>
         </div>
+
+
       </div>
     </div>
   );
